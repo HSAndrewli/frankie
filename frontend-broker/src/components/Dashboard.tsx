@@ -7,6 +7,13 @@ import Tooltip from './Tooltip';
 import { useToast } from './ToastContainer';
 import { apiClient } from '../utils/apiClient';
 import { AppError, formatError } from '../utils/errorHandler';
+import ErrorBoundary from './ErrorBoundary';
+
+const FaEyeIcon = FaEye as any;
+const FaUploadIcon = FaUpload as any;
+const FaCommentDotsIcon = FaCommentDots as any;
+const FaTrashIcon = FaTrash as any;
+const FaPlusIcon = FaPlus as any;
 
 const uniqueStatuses = (files: LoanFile[]) => Array.from(new Set(files.map(f => f.status)));
 
@@ -190,7 +197,7 @@ const Dashboard: React.FC = () => {
             </button>
           </Tooltip>
           <button className="action-btn" style={{marginBottom: 0, display: 'flex', alignItems: 'center', gap: 8}} onClick={() => setShowNewLoan(true)} aria-label="New Loan">
-            <FaPlus /> <span>New Loan</span>
+            <FaPlusIcon /> <span>New Loan</span>
           </button>
         </div>
       </div>
@@ -272,19 +279,19 @@ const Dashboard: React.FC = () => {
                   <td>{file.outstanding_items ? file.outstanding_items : 'None'}</td>
                   <td className="actions-cell">
                     <Tooltip content="View loan file details">
-                      <button className="action-btn" aria-label="View details" onClick={() => setSelected(file)}><FaEye /> <span style={{marginLeft: 4}}>View</span></button>
+                      <button className="action-btn" aria-label="View details" onClick={() => setSelected(file)}><FaEyeIcon /> <span style={{marginLeft: 4}}>View</span></button>
                     </Tooltip>
                     <Tooltip content="Upload a new document to this loan file">
-                      <button className="action-btn" aria-label="Upload document"><FaUpload /> <span style={{marginLeft: 4}}>Upload</span></button>
+                      <button className="action-btn" aria-label="Upload document"><FaUploadIcon /> <span style={{marginLeft: 4}}>Upload</span></button>
                     </Tooltip>
                     <Tooltip content="Send a message to the broker or borrower">
-                      <button className="action-btn" aria-label="Send message"><FaCommentDots /> <span style={{marginLeft: 4}}>Message</span></button>
+                      <button className="action-btn" aria-label="Send message"><FaCommentDotsIcon /> <span style={{marginLeft: 4}}>Message</span></button>
                     </Tooltip>
                     <Tooltip content="Delete this loan file (soft delete, can be restored later)">
                       <button className="action-btn" style={{background:'#b71c1c', display: 'flex', alignItems: 'center', gap: 4}} aria-label="Delete (soft)" onClick={() => {
                         setDeleteId(file.id);
                         setConfirmOpen(true);
-                      }}><FaTrash /> <span>Delete</span></button>
+                      }}><FaTrashIcon /> <span>Delete</span></button>
                     </Tooltip>
                   </td>
                 </tr>

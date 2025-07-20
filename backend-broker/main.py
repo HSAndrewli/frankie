@@ -1,13 +1,26 @@
+import sys
+import os
+from dotenv import load_dotenv
+
+# Load .env file from the backend-broker directory
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path=dotenv_path)
+
+# Add the project root to the Python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
-from typing import List
-import os
+from typing import List, Dict, Any
 import yaml
 from pydantic import BaseModel
 from fastapi import Body
 from sqlalchemy.orm import Session
-from .database import SessionLocal, engine
-from . import models
+from database import SessionLocal, engine
+import models
+from models import LoanFile
 from email_ingest.gemini_analyzer import analyze_with_gemini
 from fastapi import UploadFile, File, Form
 import shutil

@@ -13,6 +13,7 @@ interface ConfirmModalProps {
 
 const ConfirmModal: React.FC<ConfirmModalProps> = ({ open, title, message, onConfirm, onCancel, loading }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const FaTimesIcon = FaTimes as any;
 
   useEffect(() => {
     if (!open) return;
@@ -47,7 +48,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ open, title, message, onCon
           onClick={onCancel}
           style={{position:'absolute',top:18,right:18,background:'none',border:'none',fontSize:20,cursor:'pointer',color:'#888'}}
         >
-          <FaTimes />
+          <FaTimesIcon />
         </button>
         <h3 id="confirm-modal-title" style={{marginTop:0,marginBottom:16,fontWeight:700,fontSize:'1.2rem',color:'#1a2233'}}>{title}</h3>
         <div style={{marginBottom:24, color:'#222', fontSize:'1.05rem'}}>{message}</div>

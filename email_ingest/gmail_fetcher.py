@@ -4,10 +4,10 @@ import email
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from dotenv import load_dotenv
-from email_ingest.attachment_parser import parse_attachments
-from email_ingest.gemini_analyzer import analyze_with_gemini
+from attachment_parser import parse_attachments
+from gemini_analyzer import analyze_with_gemini
 import yaml
-from email_ingest.rag_pipeline import build_rag_index, retrieve_relevant_chunks, prepare_gemini_prompt
+from rag_pipeline import build_rag_index, retrieve_relevant_chunks, prepare_gemini_prompt
 import re
 
 # Load environment variables
@@ -130,7 +130,7 @@ Return your answer as a JSON object with keys for each field. If a field is not 
 EMAIL BODY:
 '''
     prompt += email_body
-    from email_ingest.gemini_analyzer import GEMINI_API_URL
+    from gemini_analyzer import GEMINI_API_URL
     import os, requests
     GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
     data = {"contents": [{"parts": [{"text": prompt}]}]}

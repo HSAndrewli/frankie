@@ -1,6 +1,10 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { FaExclamationTriangle, FaRedo, FaBug } from 'react-icons/fa';
 
+const FaExclamationTriangleIcon = FaExclamationTriangle as any;
+const FaRedoIcon = FaRedo as any;
+const FaBugIcon = FaBug as any;
+
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
@@ -63,17 +67,17 @@ class ErrorBoundary extends Component<Props, State> {
         <div className="error-boundary">
           <div className="error-boundary-content">
             <div className="error-icon">
-              <FaExclamationTriangle />
+              <FaExclamationTriangleIcon />
             </div>
             <h2>Something went wrong</h2>
             <p>We're sorry, but something unexpected happened. Please try refreshing the page or contact support if the problem persists.</p>
             
             <div className="error-actions">
               <button className="action-btn" onClick={this.handleRetry}>
-                <FaRedo /> Try Again
+                <FaRedoIcon /> Try Again
               </button>
               <button className="action-btn" onClick={this.handleReportError} style={{ background: '#888' }}>
-                <FaBug /> Report Issue
+                <FaBugIcon /> Report Issue
               </button>
             </div>
             
